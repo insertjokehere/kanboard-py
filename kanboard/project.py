@@ -1,11 +1,13 @@
+from __future__ import absolute_import
+import six
 # -*- coding: utf-8 -*-
 __author__ = 'freekoder'
 
-from remote_obj import RemoteObject
-from column import Column
-from task import Task
-from category import Category
-from swimlane import Swimlane
+from .remote_obj import RemoteObject
+from .column import Column
+from .task import Task
+from .category import Category
+from .swimlane import Swimlane
 
 
 class Project(RemoteObject):
@@ -295,8 +297,8 @@ class Project(RemoteObject):
             return []
 
     def __unicode__(self):
-        return u'Project{#' + unicode(self.id) + u', name: ' + self.name + u', active: ' + \
-               unicode(self.is_active) + u', public: ' + unicode(self.is_public) + u'}'
+        return u'Project{#' + six.text_type(self.id) + u', name: ' + self.name + u', active: ' + \
+               six.text_type(self.is_active) + u', public: ' + six.text_type(self.is_public) + u'}'
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return six.text_type(self).encode('utf-8')

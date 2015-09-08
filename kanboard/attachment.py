@@ -1,9 +1,11 @@
+from __future__ import absolute_import
 # -*- coding: utf-8 -*-
 import base64
+import six
 
 __author__ = 'freekoder'
 
-from remote_obj import RemoteObject
+from .remote_obj import RemoteObject
 
 
 class Attachment(RemoteObject):
@@ -34,7 +36,7 @@ class Attachment(RemoteObject):
             return None
 
     def __unicode__(self):
-        return u'Attachment{name: ' + self.name + u', size:' + unicode(self.size) + u'}'
+        return u'Attachment{name: ' + self.name + u', size:' + six.text_type(self.size) + u'}'
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return six.text_type(self).encode('utf-8')

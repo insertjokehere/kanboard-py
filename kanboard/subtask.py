@@ -1,7 +1,9 @@
+from __future__ import absolute_import
+import six
 # -*- coding: utf-8 -*-
 __author__ = 'freekoder'
 
-from remote_obj import RemoteObject
+from .remote_obj import RemoteObject
 
 
 def status_to_text(status):
@@ -68,10 +70,10 @@ class Subtask(RemoteObject):
             return False
 
     def status_to_text(self):
-        return unicode(self.status)
+        return six.text_type(self.status)
 
     def __unicode__(self):
-        return u'Subtask{#' + unicode(self.id) + u', title: ' + self.title + u', status: ' + status_to_text(self.status) + u'}'
+        return u'Subtask{#' + six.text_type(self.id) + u', title: ' + self.title + u', status: ' + status_to_text(self.status) + u'}'
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return six.text_type(self).encode('utf-8')

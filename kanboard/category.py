@@ -1,7 +1,9 @@
+from __future__ import absolute_import
+import six
 # -*- coding: utf-8 -*-
 __author__ = 'freekoder'
 
-from remote_obj import RemoteObject
+from .remote_obj import RemoteObject
 
 
 class Category(RemoteObject):
@@ -27,7 +29,7 @@ class Category(RemoteObject):
             return False
 
     def __unicode__(self):
-        return u'Category{#' + unicode(self.id) + u', name: ' + self.name + u'}'
+        return u'Category{#' + six.text_type(self.id) + u', name: ' + self.name + u'}'
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return six.text_type(self).encode('utf-8')

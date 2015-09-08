@@ -1,12 +1,14 @@
+from __future__ import absolute_import
 # -*- coding: utf-8 -*-
 import base64
+import six
 
 __author__ = 'freekoder'
 
-from comment import Comment
-from remote_obj import RemoteObject
-from subtask import Subtask
-from attachment import Attachment
+from .comment import Comment
+from .remote_obj import RemoteObject
+from .subtask import Subtask
+from .attachment import Attachment
 
 # TODO: create aliases for update
 
@@ -217,8 +219,8 @@ class Task(RemoteObject):
             return False
 
     def __unicode__(self):
-        return u'Task{#' + unicode(self.id) + u', title: ' + self.title + \
-               u', active: ' + unicode(self.is_active) + u'}'
+        return u'Task{#' + six.text_type(self.id) + u', title: ' + self.title + \
+               u', active: ' + six.text_type(self.is_active) + u'}'
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return six.text_type(self).encode('utf-8')

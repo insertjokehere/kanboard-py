@@ -1,7 +1,9 @@
+from __future__ import absolute_import
+import six
 # -*- coding: utf-8 -*-
 __author__ = 'freekoder'
 
-from remote_obj import RemoteObject
+from .remote_obj import RemoteObject
 
 
 class Column(RemoteObject):
@@ -84,8 +86,8 @@ class Column(RemoteObject):
             return None
 
     def __unicode__(self):
-        return u'Column{#' + unicode(self.id) + u', title: ' + self.title + \
-               u', position: ' + unicode(self.position) + u'}'
+        return u'Column{#' + six.text_type(self.id) + u', title: ' + self.title + \
+               u', position: ' + six.text_type(self.position) + u'}'
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return six.text_type(self).encode('utf-8')

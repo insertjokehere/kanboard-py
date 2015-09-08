@@ -1,7 +1,9 @@
+from __future__ import absolute_import
+import six
 # -*- coding: utf-8 -*-
 __author__ = 'freekoder'
 
-from remote_obj import RemoteObject
+from .remote_obj import RemoteObject
 
 
 class Swimlane(RemoteObject):
@@ -60,10 +62,10 @@ class Swimlane(RemoteObject):
                     date_due, category, swimlane=self)
 
     def __unicode__(self):
-        return u'Swimlane{#' + unicode(self.id) + u', name: ' + self.name + u'}'
+        return u'Swimlane{#' + six.text_type(self.id) + u', name: ' + self.name + u'}'
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return six.text_type(self).encode('utf-8')
 
 
 class ColumnWrapper:
@@ -86,7 +88,7 @@ class ColumnWrapper:
                                        score, date_due, category, swimlane=self.swimlane)
 
     def __unicode__(self):
-        return u'Swimlane' + unicode(self.column)
+        return u'Swimlane' + six.text_type(self.column)
 
     def __str__(self):
         return 'Swimlane' + str(self.column)

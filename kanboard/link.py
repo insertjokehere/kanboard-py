@@ -1,7 +1,9 @@
+from __future__ import absolute_import
+import six
 # -*- coding: utf-8 -*-
 __author__ = 'freekoder'
 
-from remote_obj import RemoteObject
+from .remote_obj import RemoteObject
 
 
 class Link(RemoteObject):
@@ -34,7 +36,7 @@ class Link(RemoteObject):
             return False
 
     def __unicode__(self):
-        return u'Link{#' + unicode(self.id) + u', label: ' + self.label + u'}'
+        return u'Link{#' + six.text_type(self.id) + u', label: ' + self.label + u'}'
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return six.text_type(self).encode('utf-8')

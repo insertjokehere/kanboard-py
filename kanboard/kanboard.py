@@ -1,12 +1,15 @@
+from __future__ import absolute_import
+from __future__ import print_function
+import six
 # -*- coding: utf-8 -*-
 
 __author__ = 'freekoder'
 
-from link import Link
-from user import User
-from column import Column
-from remote_obj import RemoteObject
-import project
+from .link import Link
+from .user import User
+from .column import Column
+from .remote_obj import RemoteObject
+from . import project
 
 
 class Kanboard(RemoteObject):
@@ -28,18 +31,18 @@ class Kanboard(RemoteObject):
 
     # TODO: rewrite with _send_template_request
     def create_project(self, project_name, description=''):
-        if type(project_name) is str:
+        if type(project_name) is six.binary_type:
             project_name = project_name.decode('utf-8')
-        if type(description) is str:
+        if type(description) is six.binary_type:
             description = description.decode('utf-8')
         rid = self._get_request_id()
         params = self._create_request_params('createProject', rid, {'name': project_name, 'description': description})
         project_id = self._send_request_with_assert(params, rid)
         if project_id:
-            print project_id
+            print(project_id)
             return self.get_project_by_id(project_id)
         else:
-            print 'Can not create project with name ' + '"' + project_name + '"'
+            print('Can not create project with name ' + '"' + project_name + '"')
             return None
 
     def get_project_by_id(self, project_id):
@@ -52,14 +55,14 @@ class Kanboard(RemoteObject):
     # TODO: rewrite with _send_template_request
     def get_project_by_name(self, name):
         rid = self._get_request_id()
-        if type(name) is str:
+        if type(name) is six.binary_type:
             name = name.decode('utf-8')
         params = self._create_request_params('getProjectByName', rid, {'name': name})
         project_props = self._send_request_with_assert(params, rid)
         if project_props:
             return project.Project(self, project_props)
         else:
-            print 'No project with name: ' + name
+            print('No project with name: ' + name)
             return None
 
     # TODO: rewrite with _send_template_request
@@ -88,7 +91,7 @@ class Kanboard(RemoteObject):
     def create_user(self, username, password, name=None, email=None, is_admin=None, default_project=None):
         props = {'username': username, 'password': password}
         if name:
-            props['name'] = name if type(name) is unicode else name.decode('utf-8')
+            props['name'] = name if type(name) is six.text_type else name.decode('utf-8')
         if email:
             props['email'] = email
         if is_admin:
