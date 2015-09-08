@@ -131,7 +131,7 @@ class Project(RemoteObject):
             return None
 
     def get_column_by_name(self, name):
-        if type(name) is str:
+        if type(name) is six.binary_type:
             name = name.decode('utf-8')
         columns = self.get_columns()
         for column in columns:
