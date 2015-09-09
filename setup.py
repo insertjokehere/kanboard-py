@@ -15,6 +15,6 @@ setup(name='kanboard',
           "Programming Language :: Python :: 2.7",
           ],
       keywords='kanboard API',
-      install_requires=['requests'],
+      install_requires=['requests', 'six'],
       packages=find_packages(exclude=['contrib', 'docs', 'tests*', 'examples'])
       )
